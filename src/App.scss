@@ -1,0 +1,42 @@
+$board-width: calc(80vw - 50px);
+$board-height: calc(95vw - 40px);
+$board-margin-left-right: calc((100vw - #{$board-width}) / 2);
+
+.App {
+  text-align: center;
+  padding-top: 15px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.App-header {
+  height: 5vh;
+  width: 100vw;
+}
+
+.game-grid {
+  padding: 10px;
+  margin-left: $board-margin-left-right;
+  margin-right: $board-margin-left-right;
+  margin-bottom: 30px;
+  width: $board-width;
+  background-color: #000;
+  height: calc(95vh - 20px);
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; 
+  gap: 10px 10px; 
+  grid-template-columns: repeat();
+  & .cell {
+    background-color: #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .cell-circle {
+      width: 7.5rem;
+      height: 7.5rem;
+      border-radius: 50%;
+    }
+  }
+}
