@@ -27,9 +27,7 @@ export default class App extends React.Component {
   loopTroughQueue(): void {
     this.state.queue.forEach((turn: Turn, index) => {
       const newGrid = this.state.grid;
-      console.log(turn);
       let newY = turn.y;
-      console.log(newGrid[4][0]);
       while (newY < 6) {
         if (newGrid[newY === 5 ? 5 : newY + 1][turn.x] !== "y" && newGrid[newY === 5 ? 5 : newY + 1][turn.x] !== "r") {
           newY++;
@@ -83,7 +81,7 @@ export default class App extends React.Component {
         <div className="App-header">
           <h1>Connect Four</h1>
           <div>
-            <button className="btn" onClick={() => this.setGameGrid()}>Reset</button>
+            <button className="btn btn-danger" onClick={() => this.setGameGrid()}>Reset</button>
           </div>
         </div>
         <div className="game-grid">
