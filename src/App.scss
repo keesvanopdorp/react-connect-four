@@ -10,8 +10,15 @@ $board-margin-left-right: calc((100vw - #{$board-width}) / 2);
 }
 
 .App-header {
-  height: 5vh;
+  height: 10vh;
   width: 100vw;
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 10px 15px;
 }
 
 .game-grid {
@@ -21,7 +28,7 @@ $board-margin-left-right: calc((100vw - #{$board-width}) / 2);
   margin-bottom: 30px;
   width: $board-width;
   background-color: #000;
-  height: calc(95vh - 20px);
+  height: calc(90vh - 20px);
   display: grid; 
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; 

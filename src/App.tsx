@@ -62,16 +62,19 @@ export default class App extends React.Component {
   }
 
   setGameGrid(): void {
-    this.setState({
-      ...this.state, grid: [
-        ['', '', '', '', '', '', '',],
-        ['', '', '', '', '', '', '',],
-        ['', '', '', '', '', '', '',],
-        ['', '', '', '', '', '', '',],
-        ['', '', '', '', '', '', '',],
-        ['', '', '', '', '', '', '',],
-      ]
-    })
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm('Are you sure that you want to reset?')) {
+      this.setState({
+        ...this.state, grid: [
+          ['', '', '', '', '', '', '',],
+          ['', '', '', '', '', '', '',],
+          ['', '', '', '', '', '', '',],
+          ['', '', '', '', '', '', '',],
+          ['', '', '', '', '', '', '',],
+          ['', '', '', '', '', '', '',],
+        ]
+      })
+    }
   }
 
   public render(): ReactElement {
@@ -79,6 +82,9 @@ export default class App extends React.Component {
       <div className="App">
         <div className="App-header">
           <h1>Connect Four</h1>
+          <div>
+            <button className="btn" onClick={() => this.setGameGrid()}>Reset</button>
+          </div>
         </div>
         <div className="game-grid">
           {this.state.grid.map((row: string[], y): ReactNode[] => {
