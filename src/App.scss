@@ -17,8 +17,13 @@ $board-margin-left-right: calc((100vw - #{$board-width}) / 2);
 .btn {
   border: none;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: #ffffff;
   padding: 10px 15px;
+}
+
+.btn-danger {
+  background-color: red;
+  color: #ffffff;
 }
 
 .game-grid {
