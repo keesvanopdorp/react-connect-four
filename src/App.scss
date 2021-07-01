@@ -12,13 +12,30 @@ $board-margin-left-right: calc((100vw - #{$board-width}) / 2);
 .App-header {
   height: 10vh;
   width: 100vw;
+  
+  & h1 {
+    font-size: 2rem;
+  }
+
+  & .header-toolbar {
+    display: flex;
+    justify-content: space-between;
+    width: 50vw;
+    align-items: center;
+    margin: 0 auto;
+
+    & p {
+      font-size: 1.4rem;
+    }
+  }
 }
 
 .btn {
   border: none;
   border-radius: 5px;
   background-color: #ffffff;
-  padding: 10px 15px;
+  padding: 15px 30px;
+  font-size: 1.1rem;
 }
 
 .btn-danger {
@@ -26,7 +43,7 @@ $board-margin-left-right: calc((100vw - #{$board-width}) / 2);
   color: #ffffff;
 }
 
-.game-grid {
+.game-board {
   padding: 10px;
   margin-left: $board-margin-left-right;
   margin-right: $board-margin-left-right;
