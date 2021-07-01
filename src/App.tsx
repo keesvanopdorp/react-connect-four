@@ -2,10 +2,12 @@ import React, { ReactElement, ReactNode } from 'react';
 import './App.scss';
 import { Cell } from './components/Cell/Cell';
 
-type player = 'player1' | 'player2';
+type player = 'player 1' | 'player 2';
 
 interface Turn {
-  player: string; x: number; y: number
+  player: string;
+  x: number;
+  y: number
 }
 
 export default class App extends React.Component {
@@ -18,10 +20,19 @@ export default class App extends React.Component {
       ['', '', '', '', '', '', '',],
       ['', '', '', '', '', '', '',],
     ],
-    turn: "player1" as player,
+    turn: "player 1" as player,
     queue: [
 
     ] as Turn[]
+  }
+
+  checkIfBoardIsFull(): boolean {
+    let isBoardFull = false;
+    this.state.grid.forEach((row: string[]): void => {
+      row.includes('') ? isBoardFull = false : isBoardFull = true;
+      return;
+    })
+    return isBoardFull;
   }
 
   loopTroughQueue(): void {
@@ -31,7 +42,7 @@ export default class App extends React.Component {
       while (newY < 6) {
         if (newGrid[newY === 5 ? 5 : newY + 1][turn.x] !== "y" && newGrid[newY === 5 ? 5 : newY + 1][turn.x] !== "r") {
           newY++;
-          newGrid[newY][turn.x] = this.state.turn === "player1" ? "y" : "r"
+          newGrid[newY][turn.x] = this.state.turn === "player 1" ? "y" : "r"
           if (newY >= 1) {
             newGrid[newY - 1][turn.x] = '';
           }
@@ -48,15 +59,21 @@ export default class App extends React.Component {
   setGridPos(x: number, y: number): void {
     if (this.state.grid[y][x] === '') {
       const newGrid = this.state.grid;
-      newGrid[y][x] = this.state.turn === "player1" ? "y" : "r";
-      console.log([...this.state.queue, { player: this.state.turn, x, y }]);
+      newGrid[y][x] = this.state.turn === "player 1" ? "y" : "r";
       const queue = this.state.queue;
       queue.push({ player: this.state.turn, x, y });
       this.setState({ ...this.state, grid: newGrid, queue });
       this.loopTroughQueue();
-      this.state.turn === "player1" ? this.setState({ ...this.state, turn: 'player2' }) : this.setState({ ...this.state, turn: 'player1' })
+      this.state.turn === "player 1" ? this.setState({ ...this.state, turn: 'player 2' }) : this.setState({ ...this.state, turn: 'player 1' })
+      // TODO: check win condition
+      if (this.checkIfBoardIsFull()) {
+        // TODO: Reset board 
+        alert('The board is full');
+        this.setGameGrid();
+      } else {
+        return;
+      }
     }
-    return;
   }
 
   setGameGrid(): void {
@@ -80,11 +97,12 @@ export default class App extends React.Component {
       <div className="App">
         <div className="App-header">
           <h1>Connect Four</h1>
-          <div>
+          <div className="header-toolbar">
             <button className="btn btn-danger" onClick={() => this.setGameGrid()}>Reset</button>
+            <p>Current player: {this.state.turn}</p>
           </div>
         </div>
-        <div className="game-grid">
+        <div className="game-board">
           {this.state.grid.map((row: string[], y): ReactNode[] => {
             return row.map((cell: string, x): ReactNode => {
               let color: string;
